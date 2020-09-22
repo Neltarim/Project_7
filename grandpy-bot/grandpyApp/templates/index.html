@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>GrandPy Bot</title>
+  <link rel="icon" href="https://img2.pngio.com/download-free-grandfather-png-file-hd-icon-favicon-freepngimg-grandfather-icon-png-512_512.png" type="image/x-icon">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/mdb.min.css') }}">
+
+  <!-- Material Design pro -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/addons-pro/chat.min.cs') }}s">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/addons-pro/cards-extended.min.css') }}">
+  
+  <!-- Your custom styles (optional) -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <!-- Google map API -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUvn-aUJOzN-53uey4dBPWB_YCP2NAvbo&callback=initMap&libraries=&v=weekly"
+    defer
+  ></script>
+
+</head>
+<body style="
+              background-image: url({{ url_for('static', filename='img/highway-animated-wallpaper-4k-3840x2160.jpg') }});
+              background-position: center;
+              background-attachment: fixed;
+              background-repeat: no-repeat;
+              background-size: cover;
+
+              display: flex;
+              flex-direction: column;
+              min-height: 100vh;
+              ">
+
+  <header style="margin-bottom: auto;">
+    <nav class="navbar navbar-dark">
+      <a class="navbar-brand" href="#">
+        <img src="https://img2.pngio.com/download-free-grandfather-png-file-hd-icon-favicon-freepngimg-grandfather-icon-png-512_512.png"
+             height="50" 
+             class="d-inline-block align-top">
+      </a>
+    </nav>
+  </header>
+
+  <main class="container">  
+
+    <div class="row flex-center">
+
+      <div class="card speed-mask chat-room z-depth-4 bg-fade-grey">
+        <div class="card-body">
+      
+      
+            <!-- Grid column -->
+            <div class="container">
+    
+      
+              <div class="chat-message">
+      
+                <ul id="msg-list" class="list-unstyled chat-1 scrollbar-light-blue wow fadeInUp">
+                  <br>
+                  <li class="d-flex justify-content-end mb-4 mpl-1" style="display: none !important; ">
+                    <div class="chat-body white p-3 z-depth-1 smooth-border">
+                      <div class="header">
+                        <strong class="primary-font">User</strong>
+                        
+                      </div>
+                      <hr class="w-100">
+                      <p class="mb-0">
+                        Sed ut perspic
+                      </p>
+                    </div>
+                    <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" alt="avatar" class="avatar rounded-circle mr-0 ml-3 z-depth-1">
+                  </li>
+                  <li class="d-flex justify-content-start mb-4 pb-3 mpl-1">
+                    <img src="https://img2.pngio.com/download-free-grandfather-png-file-hd-icon-favicon-freepngimg-grandfather-icon-png-512_512.png" alt="avatar" class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1">
+                    <div class="chat-body white p-3 ml-2 z-depth-1 smooth-border">
+                      <div class="header">
+                        <strong class="primary-font">GrandPy</strong>
+                        
+                      </div>
+                      <hr class="w-100">
+                      <p class="mb-0">
+                        Salut la jeunesse ! Alors on vient ecouter le vieux monsieur radoter ? De quoi tu veux parler aujourd'hui ?
+                      </p>
+                
+                      
+                    </div>
+          
+                  </li>
+
+                </ul>
+                <div class="white">
+                  <div class="form-group basic-textarea">
+                    <textarea id="text_to_send" class="form-control pl-2 my-0 z-depth-2" id="exampleFormControlTextarea2" rows="3" placeholder="Type your message here..."></textarea>
+                  </div>
+                </div>
+                <button type="button" id="send" onclick="send_msg()" class="btn blue-gradient btn-rounded btn-sm waves-effect waves-dark float-right">Envoyer</button>
+  
+              </div>
+      
+            </div>
+            <!-- Grid column -->
+      
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer font-small white-text " style="margin-top: auto;">
+    <div class="footer-copyright text-center py-3">Made by Alexandre Mayer :
+      <a class="btn btn-rounded btn-outline-blue" href="http://www.sleepless-am.me">sleepless-am.me</a>
+    </div>
+  </footer>
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      new WOW().init();
+    });
+  </script>
+
+  <!-- grandPy bot scripts -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/grandpySrc/grandpy_bot.js') }}"></script>
+</body>
+</html>
