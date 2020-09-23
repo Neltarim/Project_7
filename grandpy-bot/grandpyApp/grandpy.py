@@ -2,6 +2,7 @@ import requests
 from grandpyApp.api_key import API_KEY
 
 class Grandpy():
+    """ Bot process """
 
     def __init__(self, parsed_content):
         
@@ -26,6 +27,7 @@ class Grandpy():
 
 
     def compil_data(self):
+        """ Start all requests and return result """
 
         self.gmap_call()
         self.wiki_find_page()
@@ -48,6 +50,7 @@ class Grandpy():
         return self.res
 
     def gmap_call(self):
+        """ Request gmap API """
 
         url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?"
 
@@ -74,6 +77,7 @@ class Grandpy():
             pass
 
     def wiki_find_page(self):
+        """ Define the MediaWiki page with by title """
         
         url = "http://fr.wikipedia.org/w/api.php"
 
@@ -90,7 +94,7 @@ class Grandpy():
         
             pages = data['query']['pages']
             
-            for page in pages:
+            for page in pages: # Get only the first element
                 self.page_id = pages[page]['pageid']
                 break
 
@@ -100,6 +104,7 @@ class Grandpy():
             pass
 
     def wiki_find_page_from_coord(self):
+        """ Define the MediaWiki page by coordinates """
 
         url = "http://fr.wikipedia.org/w/api.php"
 
@@ -127,6 +132,7 @@ class Grandpy():
 
 
     def wiki_call(self):
+        """ Extract content from page MediaWiki """
         
         url = "http://fr.wikipedia.org/w/api.php"
 
@@ -138,7 +144,7 @@ class Grandpy():
                 'pageids'        : self.page_id,
                 'formatversion' : '2',
                 'ascii'         : '1',
-                'exsentences'   : '4',
+                'exsentences'   : '4', # number of sentences to extract
                 'exlimit'       : '1',
                 'explaintext'   : 1
             }

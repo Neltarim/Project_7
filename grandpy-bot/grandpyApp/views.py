@@ -6,15 +6,20 @@ from grandpyApp.parsing import parse_text
 app = Flask(__name__)
 
 @app.route('/')
-def index():
+def index(): 
+    """main page"""
+
     return render_template("index.html")
 
 @app.route('/favicon.ico')
-def favicon():
+def favicon(): 
+    """Resolve favicon error"""
+    
     return send_from_directory(os.path.join(app.root_path, 'static'), 'mdb-favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/api/answer', methods=['GET'])
-def grandpy_answer():
+def grandpy_answer(): 
+    """Process query"""
 
     parsed = parse_text(request.args.get("str"))
     gp = Grandpy(parsed)

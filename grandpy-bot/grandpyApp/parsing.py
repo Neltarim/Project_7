@@ -3,6 +3,7 @@ from os import getcwd
 
 
 def json_load(path):
+    """Quick load from json file."""
     with open(path, "r") as file:
         data = json.load(file)
 
@@ -10,33 +11,37 @@ def json_load(path):
 
 
 def parse_text(string):
+    """Kill every stop words and whitespaces"""
+
+    #Stop words list path
     stop_words = json_load(getcwd() + "/grandpyApp/stopwords/stop_words.json")
 
-    raw = string.split()
+    raw = string.split() #Split every words from string
     tmp = []
 
-    stop_chars = ["?","!",".",":",";",]
+    whitespaces = ["?","!",".",":",";",]
 
-    for word in raw:
-        word = word.lower()
-        insert = True
+    for word in raw: # Browse every words from raw
+        word = word.lower() #Prevent uppercase
+        insert = True #If the word can be inserted
         
         print("process :" + word)
-        for stop in stop_words:
+        for stop in stop_words: # Browse stop_words
             
             if word == stop:
-                insert = False
+                insert = False #Don't insert it
                 break
 
-        for char in stop_chars:
+        for char in whitespaces: # Browse whitespaces
 
             if word == char: 
-                insert = False
+                insert = False #Don't insert it
                 break
 
-        if insert:
+        if insert: #The word can be inserted
             tmp.append(word.capitalize())
 
+    #Back to string
     sep = " "
     res = sep.join(tmp)
 
